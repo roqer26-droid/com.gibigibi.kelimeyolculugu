@@ -1,0 +1,507 @@
+@import "tailwindcss";
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    overscroll-behavior: none;
+    -webkit-tap-highlight-color: transparent;
+    font-family: 'Nunito', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+}
+
+/* Bulmaca kutusu yerleşim ve parlama animasyonları */
+@keyframes tilePop {
+  0% {
+    transform: scale(0.62);
+    opacity: 0.4;
+  }
+  55% {
+    transform: scale(1.16);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(0.96);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes tileGlowRing {
+  0% {
+    opacity: 0;
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.95), 0 0 16px 4px rgba(250, 204, 21, 0.9);
+    background: rgba(255, 255, 255, 0.48);
+  }
+  20% {
+    opacity: 1;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.85), 0 0 24px 6px rgba(250, 204, 21, 0.82);
+    background: rgba(255, 255, 255, 0.36);
+  }
+  100% {
+    opacity: 0;
+    box-shadow: 0 0 0 12px rgba(255, 255, 255, 0), 0 0 8px 0 rgba(250, 204, 21, 0);
+    background: rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes tileAlreadyPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  40% {
+    transform: scale(1.1);
+    filter: brightness(1.18);
+  }
+}
+
+@keyframes hintReveal {
+  0% {
+    transform: scale(0.65) rotate(-6deg);
+    opacity: 0.3;
+  }
+  60% {
+    transform: scale(1.15) rotate(2deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* Yanlış kelime titreşimi */
+@keyframes wordShake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  18% {
+    transform: translateX(-8px);
+  }
+  36% {
+    transform: translateX(7px);
+  }
+  54% {
+    transform: translateX(-6px);
+  }
+  72% {
+    transform: translateX(4px);
+  }
+  88% {
+    transform: translateX(-2px);
+  }
+}
+
+@keyframes toastPop {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.94);
+  }
+  14% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.96);
+  }
+}
+
+@keyframes bonusBounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.22);
+  }
+  65% {
+    transform: scale(0.94);
+  }
+}
+
+/* Doğa arka planı sakin hareketler */
+@keyframes cloudDriftSlow {
+  0% {
+    transform: translateX(-3%);
+  }
+  50% {
+    transform: translateX(3%);
+  }
+  100% {
+    transform: translateX(-3%);
+  }
+}
+
+@keyframes cloudDriftMed {
+  0% {
+    transform: translateX(2.5%);
+  }
+  50% {
+    transform: translateX(-2.5%);
+  }
+  100% {
+    transform: translateX(2.5%);
+  }
+}
+
+@keyframes waterShimmer {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scaleX(0.96);
+  }
+  50% {
+    opacity: 0.72;
+    transform: scaleX(1.04);
+  }
+}
+
+@keyframes sunBreathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.88;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+/* Bölüm sonu kutlama konfetileri */
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-20px) rotate(0deg);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(420px) rotate(520deg);
+    opacity: 0;
+  }
+}
+
+@keyframes modalEnter {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-tile-pop {
+  animation: tilePop 0.42s cubic-bezier(0.22, 1.32, 0.36, 1) both;
+}
+
+.animate-tile-glow {
+  animation: tileGlowRing 0.78s ease-out both;
+}
+
+.animate-tile-already {
+  animation: tileAlreadyPulse 0.48s ease-in-out both;
+}
+
+.animate-hint-reveal {
+  animation: hintReveal 0.45s cubic-bezier(0.22, 1.3, 0.36, 1) both;
+}
+
+.animate-word-shake {
+  animation: wordShake 0.4s ease-in-out;
+}
+
+.animate-toast-pop {
+  animation: toastPop 2.1s ease-out forwards;
+}
+
+.animate-bonus-bounce {
+  animation: bonusBounce 0.48s cubic-bezier(0.22, 1.3, 0.36, 1);
+}
+
+.animate-cloud-slow {
+  animation: cloudDriftSlow 26s ease-in-out infinite;
+}
+
+.animate-cloud-med {
+  animation: cloudDriftMed 19s ease-in-out infinite;
+}
+
+.animate-water-shimmer {
+  animation: waterShimmer 5s ease-in-out infinite;
+}
+
+.animate-sun-breathe {
+  animation: sunBreathe 7s ease-in-out infinite;
+}
+
+.animate-modal-enter {
+  animation: modalEnter 0.34s cubic-bezier(0.22, 1.15, 0.36, 1) both;
+}
+
+/* Ana menü başlığı "Kelime Yolculuğu" hareketli animasyonları */
+@keyframes titleLetterWave {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  22% {
+    transform: translateY(-11px) rotate(-3deg);
+  }
+  42% {
+    transform: translateY(0) rotate(0deg);
+  }
+  62% {
+    transform: translateY(3px) rotate(1.5deg);
+  }
+  80% {
+    transform: translateY(-2px) rotate(-0.5deg);
+  }
+}
+
+.title-letter {
+  display: inline-block;
+  animation: titleLetterWave 2.8s ease-in-out infinite;
+  will-change: transform;
+  text-shadow: 0 2px 0 rgba(15, 23, 42, 0.28), 0 5px 16px rgba(15, 23, 42, 0.42);
+}
+
+@keyframes titleGlowPulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.07);
+  }
+}
+
+.title-glow {
+  animation: titleGlowPulse 3.4s ease-in-out infinite;
+}
+
+@keyframes titleTileFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(var(--tilt, 0deg));
+  }
+  50% {
+    transform: translateY(-7px) rotate(var(--tilt, 0deg));
+  }
+}
+
+.title-tile {
+  animation: titleTileFloat 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Manzara ayrıntıları: yağmur, kar ve savrulan yapraklar */
+@keyframes sceneFall {
+  0% {
+    transform: translate(0, -40px);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-26px, 90px);
+    opacity: 0;
+  }
+}
+
+.scene-fall {
+  animation: sceneFall 5.5s linear infinite;
+}
+.scene-fall.scene-fall-b {
+  animation-delay: -2.75s;
+}
+.scene-fall.scene-fall-fast {
+  animation-duration: 1.5s;
+}
+.scene-fall.scene-fall-fast.scene-fall-b {
+  animation-delay: -0.75s;
+}
+.scene-fall.scene-fall-slow {
+  animation-duration: 9s;
+}
+.scene-fall.scene-fall-slow.scene-fall-b {
+  animation-delay: -4.5s;
+}
+
+/* Hareket azaltma tercihine saygı */
+@media (prefers-reduced-motion: reduce) {
+  .scene-fall,
+  .title-letter,
+  .title-tile,
+  .title-glow,
+  .animate-cloud-slow,
+  .animate-cloud-med,
+  .animate-water-shimmer,
+  .animate-sun-breathe {
+    animation: none !important;
+  }
+}
+
+/* Kayan listeler için zarif scrollbar */
+.custom-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.18);
+  border-radius: 9999px;
+}
+
+
+/* Yeni manzara ayrıntıları: değirmen, ateşböceği, kutup ışığı, yıldız tozu, sallanan bitkiler */
+@keyframes sceneSway {
+  0%, 100% {
+    transform: rotate(-2.2deg);
+  }
+  50% {
+    transform: rotate(2.6deg);
+  }
+}
+
+.scene-sway {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: sceneSway 4.6s ease-in-out infinite;
+}
+
+.scene-sway-top {
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+  animation: sceneSway 5.2s ease-in-out infinite;
+}
+
+.palm-sway {
+  animation: sceneSway 5.6s ease-in-out infinite;
+}
+
+@keyframes windmillSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.windmill-blades {
+  animation: windmillSpin 9s linear infinite;
+}
+
+@keyframes fireflyPulse {
+  0%, 100% {
+    opacity: 0.1;
+    transform: translate(0, 0);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(7px, -9px);
+  }
+}
+
+.firefly {
+  animation: fireflyPulse 3s ease-in-out infinite;
+}
+
+@keyframes auroraWave {
+  0%, 100% {
+    transform: translateX(-18px);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateX(22px);
+    opacity: 1;
+  }
+}
+
+.aurora-wave {
+  animation: auroraWave 11s ease-in-out infinite;
+}
+
+.aurora-wave-b {
+  animation-duration: 15s;
+  animation-direction: reverse;
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.twinkle {
+  animation: twinkle 2.6s ease-in-out infinite;
+}
+
+@keyframes shootingStar {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  4% {
+    opacity: 1;
+  }
+  20% {
+    transform: translate(260px, 125px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(260px, 125px);
+    opacity: 0;
+  }
+}
+
+.shooting-star {
+  animation: shootingStar 7s linear infinite;
+}
+
+@keyframes sceneLightning {
+  0%, 87%, 91%, 96%, 100% { opacity: 0; }
+  89%, 94% { opacity: 0.72; }
+}
+
+.scene-lightning {
+  animation: sceneLightning 12s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-sway,
+  .scene-sway-top,
+  .palm-sway,
+  .windmill-blades,
+  .firefly,
+  .aurora-wave,
+  .twinkle,
+  .shooting-star {
+    animation: none !important;
+  }
+
+  .scene-lightning {
+    animation: none !important;
+    opacity: 0;
+  }
+}

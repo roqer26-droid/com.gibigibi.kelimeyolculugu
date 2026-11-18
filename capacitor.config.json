@@ -1,0 +1,13 @@
+{
+  "appId": "com.gibigibi.kelimeyolculugu",
+  "appName": "Kelime Yolculuğu",
+  "webDir": "dist",
+  "backgroundColor": "#000000",
+  "android": {
+    "allowMixedContent": false,
+    "webContentsDebuggingEnabled": false
+  },
+  "server": {
+    "androidScheme": "https"
+  }
+}
